@@ -6,19 +6,21 @@
 /*   By: sehattor <sehattor@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/05 14:02:55 by sehattor          #+#    #+#             */
-/*   Updated: 2022/04/05 15:27:07 by sehattor         ###   ########.fr       */
+/*   Updated: 2022/04/07 23:35:45 by sehattor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "includes/minitalk.h"
+#include "minitalk.h"
 
-void	print_err_exit(char *str_err){
+void	print_err_exit(char *str_err)
+{
 	ft_putendl_fd(str_err, STDERR_FILENO);
 	exit (1);
 }
 
 
-pid_t	str_to_pid(char	*str){
+pid_t	str_to_pid(char	*str)
+{
 	pid_t	pid;
 
 	pid = ft_atoi(str);// TODO: INT超えた場合のエラー処理ができてない CMP?
