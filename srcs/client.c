@@ -6,7 +6,7 @@
 /*   By: sehattor <sehattor@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/05 13:45:02 by sehattor          #+#    #+#             */
-/*   Updated: 2022/04/07 23:40:54 by sehattor         ###   ########.fr       */
+/*   Updated: 2022/04/08 00:03:57 by sehattor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,14 +23,15 @@ void	send_signal(pid_t pid, int signal_type)
 void	send_char(pid_t pid, char c)
 {
 	int	bit_shift;
-	int	signal_type;
+	int	send_bit;
 
 	bit_shift = 0;
 	while (bit_shift < CHAR_BIT)
 	{
-		signal_type = (c >> bit_shift) & 1;
-		send_signal(pid, signal_type);
+		send_bit = (c >> bit_shift) & 1;
+		send_signal(pid, send_bit);
 		bit_shift++;
+		usleep(SIG_INTAVAL);
 	}
 }
 

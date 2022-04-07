@@ -6,7 +6,7 @@
 /*   By: sehattor <sehattor@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/05 14:04:20 by sehattor          #+#    #+#             */
-/*   Updated: 2022/04/07 23:36:31 by sehattor         ###   ########.fr       */
+/*   Updated: 2022/04/07 23:51:20 by sehattor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@
 
 #define PID_MAX INT_MAX
 #define PID_MIN 0
+#define SIG_INTAVAL 100
 
 volatile sig_atomic_t	g_received_signal;
 
