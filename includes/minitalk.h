@@ -6,7 +6,7 @@
 /*   By: sehattor <sehattor@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/05 14:04:20 by sehattor          #+#    #+#             */
-/*   Updated: 2022/04/05 15:33:00 by sehattor         ###   ########.fr       */
+/*   Updated: 2022/04/07 23:36:31 by sehattor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,12 @@
 # define MSG_PID_FALIED "---Connection failed---"
 # define MSG_PID_SUCCESS "---Connection success---"
 
+# define MSG_SIG_ERR "---Signal Error---"
+
 #define PID_MAX INT_MAX
 #define PID_MIN 0
+
+volatile sig_atomic_t	g_received_signal;
 
 /* utils.c */
 /* print arg and exit STDERR_FILENO */
