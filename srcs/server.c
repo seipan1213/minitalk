@@ -6,19 +6,19 @@
 /*   By: sehattor <sehattor@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/07 22:29:50 by sehattor          #+#    #+#             */
-/*   Updated: 2022/04/08 00:03:26 by sehattor         ###   ########.fr       */
+/*   Updated: 2022/04/10 00:37:31 by sehattor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minitalk.h"
 
-void set_signal_handler(sig_t hoge)
+void	set_signal_handler(sig_t hoge)
 {
 	struct sigaction	sa;
 
 	ft_bzero(&sa, sizeof(struct sigaction));
 	sigemptyset(&sa.sa_mask);
-	sa.sa_handler= hoge;
+	sa.sa_handler = hoge;
 	sa.sa_flags = 0;
 	if (sigaction(SIGUSR1, &sa, NULL) == -1)
 		print_err_exit(MSG_SIG_ERR);
@@ -26,22 +26,12 @@ void set_signal_handler(sig_t hoge)
 		print_err_exit(MSG_SIG_ERR);
 }
 
-void print_pid(void)
-{
-	pid_t pid;
-
-	pid = getpid();
-	ft_putstr_fd("PID: ", STDOUT_FILENO);
-	ft_putnbr_fd(pid, STDOUT_FILENO);
-	ft_putendl_fd("", STDOUT_FILENO);
-}
-
 void	set_signal(int signal)
 {
 	g_received_signal = signal;
 }
 
-void	receive_char()
+void	receive_char(void)
 {
 	static int	bit_shift;
 	static char	put_c;
@@ -57,7 +47,7 @@ void	receive_char()
 	}
 }
 
-void	receive_message()
+void	receive_message(void)
 {
 	while (1)
 	{
@@ -66,7 +56,7 @@ void	receive_message()
 	}
 }
 
-int main(void)
+int	main(void)
 {
 	print_pid();
 	set_signal_handler(set_signal);

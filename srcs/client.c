@@ -6,7 +6,7 @@
 /*   By: sehattor <sehattor@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/05 13:45:02 by sehattor          #+#    #+#             */
-/*   Updated: 2022/04/08 00:08:04 by sehattor         ###   ########.fr       */
+/*   Updated: 2022/04/10 00:33:02 by sehattor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,9 @@
 void	send_signal(pid_t pid, int signal_type)
 {
 	if (signal_type == 0)
-		kill (pid, SIGUSR1);
+		kill(pid, SIGUSR1);
 	else
-		kill (pid, SIGUSR2);
+		kill(pid, SIGUSR2);
 }
 
 void	send_char(pid_t pid, char c)
