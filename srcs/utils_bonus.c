@@ -6,20 +6,22 @@
 /*   By: sehattor <sehattor@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/05 14:02:55 by sehattor          #+#    #+#             */
-/*   Updated: 2022/04/10 22:16:21 by sehattor         ###   ########.fr       */
+/*   Updated: 2022/04/11 00:07:08 by sehattor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minitalk_bonus.h"
 
-void	set_signal_handler(sig_t hander)
+extern volatile sig_atomic_t	g_received_signal;
+
+void	set_signal_handler(t_sigaction_handler hander)
 {
 	struct sigaction	sa;
 
 	ft_bzero(&sa, sizeof(struct sigaction));
 	sigemptyset(&sa.sa_mask);
-	sa.sa_handler = hander;
-	sa.sa_flags = 0;
+	sa.sa_sigaction = hander;
+	sa.sa_flags = SA_SIGINFO;
 	if (sigaction(SIGUSR1, &sa, NULL) == -1)
 		print_err_exit(MSG_SIG_ERR);
 	if (sigaction(SIGUSR2, &sa, NULL) == -1)
@@ -73,11 +75,11 @@ bool	is_timeout(int time_limit)
 {
 	while (time_limit--)
 	{
-		if (g_received_client_signal == 1)
+		if (g_received_signal)
 		{
 			return (false);
 		}
-		usleep(SIG_INTAVAL);
+		usleep(100);
 	}
 	return (true);
 }

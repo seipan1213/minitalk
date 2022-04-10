@@ -6,11 +6,13 @@
 /*   By: sehattor <sehattor@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/05 13:45:02 by sehattor          #+#    #+#             */
-/*   Updated: 2022/04/10 21:59:30 by sehattor         ###   ########.fr       */
+/*   Updated: 2022/04/11 00:07:47 by sehattor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minitalk_bonus.h"
+
+volatile sig_atomic_t	g_received_signal;
 
 void	send_signal(pid_t pid, int signal_type)
 {
@@ -59,9 +61,11 @@ void	send_message(pid_t pid, char *message)
 	ft_putendl_fd(MSG_PID_SUCCESS, STDOUT_FILENO);
 }
 
-void	set_client_signal(int signal)
+void	sig_handler_client(int signal, siginfo_t *info, void *ucontext)
 {
-	g_received_client_signal = signal;
+	(void)info;
+	(void)ucontext;
+	g_received_signal = signal;
 }
 
 int	main(int argc, char **argv)
@@ -71,6 +75,6 @@ int	main(int argc, char **argv)
 	if (argc != 3)
 		print_err_exit(MSG_ARGS_ERR);
 	pid = str_to_pid(argv[1]);
-	set_signal_handler(set_client_signal);
+	set_signal_handler(sig_handler_client);
 	send_message(pid, argv[2]);
 }
