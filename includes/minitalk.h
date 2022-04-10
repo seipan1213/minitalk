@@ -6,7 +6,7 @@
 /*   By: sehattor <sehattor@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/05 14:04:20 by sehattor          #+#    #+#             */
-/*   Updated: 2022/04/10 00:18:20 by sehattor         ###   ########.fr       */
+/*   Updated: 2022/04/10 22:17:22 by sehattor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,5 +40,6 @@ volatile sig_atomic_t g_received_signal;
 void print_err_exit(char *str_err);
 /* str convert to pid and check */
 pid_t str_to_pid(char *str);
+void	print_pid(void);
 
 #endif
