@@ -6,19 +6,19 @@
 /*   By: sehattor <sehattor@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/07 22:29:50 by sehattor          #+#    #+#             */
-/*   Updated: 2022/04/10 00:37:31 by sehattor         ###   ########.fr       */
+/*   Updated: 2022/04/10 21:02:26 by sehattor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minitalk.h"
 
-void	set_signal_handler(sig_t hoge)
+void	set_signal_handler(sig_t hander)
 {
 	struct sigaction	sa;
 
 	ft_bzero(&sa, sizeof(struct sigaction));
 	sigemptyset(&sa.sa_mask);
-	sa.sa_handler = hoge;
+	sa.sa_handler = hander;
 	sa.sa_flags = 0;
 	if (sigaction(SIGUSR1, &sa, NULL) == -1)
 		print_err_exit(MSG_SIG_ERR);
