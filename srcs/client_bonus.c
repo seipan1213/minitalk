@@ -6,7 +6,7 @@
 /*   By: sehattor <sehattor@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/05 13:45:02 by sehattor          #+#    #+#             */
-/*   Updated: 2022/04/11 00:07:47 by sehattor         ###   ########.fr       */
+/*   Updated: 2022/04/12 16:28:33 by sehattor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,13 @@ volatile sig_atomic_t	g_received_signal;
 
 void	send_signal(pid_t pid, int signal_type)
 {
+	g_received_signal = 0;
 	if (signal_type == 0)
 		kill(pid, SIGUSR1);
 	else
 		kill(pid, SIGUSR2);
+	if (is_timeout(TIME_OUT_LIMIT) == true)
+			print_err_exit(MSG_SIG_ERR);
 }
 
 void	send_char(pid_t pid, char c)
@@ -33,7 +36,6 @@ void	send_char(pid_t pid, char c)
 		signal_type = (c >> bit_shift) & 1;
 		send_signal(pid, signal_type);
 		bit_shift++;
-		usleep(SIG_INTAVAL);
 	}
 }
 
@@ -44,7 +46,6 @@ void	send_client_pid(pid_t pid)
 	{
 		print_err_exit(MSG_SIG_ERR);
 	}
-
 }
 
 void	send_message(pid_t pid, char *message)

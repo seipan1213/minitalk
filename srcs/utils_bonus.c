@@ -6,7 +6,7 @@
 /*   By: sehattor <sehattor@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/05 14:02:55 by sehattor          #+#    #+#             */
-/*   Updated: 2022/04/11 00:07:08 by sehattor         ###   ########.fr       */
+/*   Updated: 2022/04/12 13:13:22 by sehattor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,7 @@ bool	is_timeout(int time_limit)
 		{
 			return (false);
 		}
-		usleep(100);
+		usleep(TIME_OUT_INTAVAL);
 	}
 	return (true);
 }

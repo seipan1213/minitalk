@@ -6,7 +6,7 @@
 /*   By: sehattor <sehattor@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/05 14:04:20 by sehattor          #+#    #+#             */
-/*   Updated: 2022/04/10 23:44:27 by sehattor         ###   ########.fr       */
+/*   Updated: 2022/04/12 16:29:14 by sehattor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,11 +32,10 @@
 #define SIG_INTAVAL 100
 #define INT_MAX_STR "2147483647"
 #define TIME_OUT_LIMIT 1000
-#define TIME_OUT_INTAVAL 100
+#define TIME_OUT_INTAVAL 10
 
 #define SIG_INIT -1
 
-volatile sig_atomic_t g_received_signal;
 volatile sig_atomic_t g_received_signal;
 
 typedef void(*t_sigaction_handler)(int, siginfo_t *, void *);

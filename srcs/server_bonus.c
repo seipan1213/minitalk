@@ -6,7 +6,7 @@
 /*   By: sehattor <sehattor@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/07 22:29:50 by sehattor          #+#    #+#             */
-/*   Updated: 2022/04/11 00:07:22 by sehattor         ###   ########.fr       */
+/*   Updated: 2022/04/12 16:20:13 by sehattor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,15 +57,17 @@ void	receive_message(void)
 {
 	int		cli_pid;
 
-	g_received_signal = SIG_INIT;
-	pause();
-	cli_pid = receive_client_pid();
 	while (1)
 	{
+		g_received_signal = SIG_INIT;
 		pause();
-		receive_char();
-		g_received_signal = 0;
-		kill(cli_pid, SIGUSR1);
+		cli_pid = receive_client_pid();
+		while (is_timeout(TIME_OUT_LIMIT) == false)
+		{
+			receive_char();
+			g_received_signal = 0;
+			kill(cli_pid, SIGUSR1);
+		}
 	}
 }
 
