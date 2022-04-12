@@ -6,7 +6,7 @@
 /*   By: sehattor <sehattor@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/05 14:02:55 by sehattor          #+#    #+#             */
-/*   Updated: 2022/04/12 13:13:22 by sehattor         ###   ########.fr       */
+/*   Updated: 2022/04/12 19:41:03 by sehattor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,6 @@ void	set_signal_handler(t_sigaction_handler hander)
 	if (sigaction(SIGUSR2, &sa, NULL) == -1)
 		print_err_exit(MSG_SIG_ERR);
 }
-
 
 void	print_pid(void)
 {
@@ -57,18 +56,6 @@ bool	check_str_to_int(char *str)
 		return (true);
 	}
 	return (false);
-}
-
-pid_t	str_to_pid(char *str)
-{
-	pid_t	pid;
-
-	pid = ft_atoi(str);
-	if (!check_str_to_int(str) || pid < PID_MIN || PID_MAX < pid)
-		print_err_exit(MSG_PID_ERR);
-	else if (kill(pid, 0) == -1)
-		print_err_exit(MSG_PID_FALIED);
-	return (pid);
 }
 
 bool	is_timeout(int time_limit)

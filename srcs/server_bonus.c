@@ -6,7 +6,7 @@
 /*   By: sehattor <sehattor@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/07 22:29:50 by sehattor          #+#    #+#             */
-/*   Updated: 2022/04/12 16:20:13 by sehattor         ###   ########.fr       */
+/*   Updated: 2022/04/12 19:40:24 by sehattor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ int	receive_client_pid(void)
 
 void	receive_message(void)
 {
-	int		cli_pid;
+	int	cli_pid;
 
 	while (1)
 	{

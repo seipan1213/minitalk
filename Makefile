@@ -11,7 +11,7 @@ SERVER_OBJS	=	${SERVER_SRCS:.c=.o}
 
 CLIENT_NAME_BONUS	=	client_bonus
 SERVER_NAME_BONUS	=	server_bonus
-CLIENT_SRCS_BONUS	=	${SRCSDIR}/client_bonus.c ${SRCSDIR}/utils_bonus.c
+CLIENT_SRCS_BONUS	=	${SRCSDIR}/client_bonus.c ${SRCSDIR}/client_sub_bonus.c ${SRCSDIR}/utils_bonus.c
 CLIENT_OBJS_BONUS	=	${CLIENT_SRCS_BONUS:.c=.o}
 SERVER_SRCS_BONUS	=	${SRCSDIR}/server_bonus.c ${SRCSDIR}/utils_bonus.c
 SERVER_OBJS_BONUS	=	${SERVER_SRCS_BONUS:.c=.o}

@@ -6,7 +6,7 @@
 /*   By: sehattor <sehattor@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/05 13:45:02 by sehattor          #+#    #+#             */
-/*   Updated: 2022/04/12 16:28:33 by sehattor         ###   ########.fr       */
+/*   Updated: 2022/04/12 19:38:50 by sehattor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	send_signal(pid_t pid, int signal_type)
 	else
 		kill(pid, SIGUSR2);
 	if (is_timeout(TIME_OUT_LIMIT) == true)
-			print_err_exit(MSG_SIG_ERR);
+		print_err_exit(MSG_SIG_ERR);
 }
 
 void	send_char(pid_t pid, char c)
@@ -60,13 +60,6 @@ void	send_message(pid_t pid, char *message)
 		msg_i++;
 	}
 	ft_putendl_fd(MSG_PID_SUCCESS, STDOUT_FILENO);
-}
-
-void	sig_handler_client(int signal, siginfo_t *info, void *ucontext)
-{
-	(void)info;
-	(void)ucontext;
-	g_received_signal = signal;
 }
 
 int	main(int argc, char **argv)
