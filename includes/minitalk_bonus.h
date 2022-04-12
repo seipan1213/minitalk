@@ -6,7 +6,7 @@
 /*   By: sehattor <sehattor@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/05 14:04:20 by sehattor          #+#    #+#             */
-/*   Updated: 2022/04/12 19:35:19 by sehattor         ###   ########.fr       */
+/*   Updated: 2022/04/12 20:59:11 by sehattor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ void	send_message(pid_t pid, char *message);
 void	sig_handler_client(int signal, siginfo_t *info, void *ucontext);
 pid_t	str_to_pid(char *str);
 
-/* server_bonus*/
+/* server_bonus */
 void	sig_handler_server(int signal, siginfo_t *info, void *ucontext);
 void	receive_char(void);
 int		receive_client_pid(void);
