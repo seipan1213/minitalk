@@ -6,11 +6,27 @@
 /*   By: sehattor <sehattor@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/05 14:02:55 by sehattor          #+#    #+#             */
-/*   Updated: 2022/04/10 00:37:50 by sehattor         ###   ########.fr       */
+/*   Updated: 2022/04/12 20:58:16 by sehattor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minitalk.h"
+
+extern volatile sig_atomic_t	g_received_signal;
+
+void	set_signal_handler(t_sigaction_handler hander)
+{
+	struct sigaction	sa;
+
+	ft_bzero(&sa, sizeof(struct sigaction));
+	sigemptyset(&sa.sa_mask);
+	sa.sa_sigaction = hander;
+	sa.sa_flags = SA_SIGINFO;
+	if (sigaction(SIGUSR1, &sa, NULL) == -1)
+		print_err_exit(MSG_SIG_ERR);
+	if (sigaction(SIGUSR2, &sa, NULL) == -1)
+		print_err_exit(MSG_SIG_ERR);
+}
 
 void	print_pid(void)
 {
@@ -42,14 +58,15 @@ bool	check_str_to_int(char *str)
 	return (false);
 }
 
-pid_t	str_to_pid(char *str)
+bool	is_timeout(int time_limit)
 {
-	pid_t	pid;
-
-	pid = ft_atoi(str);
-	if (!check_str_to_int(str) || pid < PID_MIN || PID_MAX < pid)
-		print_err_exit(MSG_PID_ERR);
-	else if (kill(pid, 0) == -1)
-		print_err_exit(MSG_PID_FALIED);
-	return (pid);
+	while (time_limit--)
+	{
+		if (g_received_signal)
+		{
+			return (false);
+		}
+		usleep(TIME_OUT_INTAVAL);
+	}
+	return (true);
 }

@@ -3,7 +3,7 @@ SRCSDIR		=	./srcs
 
 CLIENT_NAME	=	client
 SERVER_NAME	=	server
-CLIENT_SRCS	=	${SRCSDIR}/client.c ${SRCSDIR}/utils.c
+CLIENT_SRCS	=	${SRCSDIR}/client.c ${SRCSDIR}/client_sub.c ${SRCSDIR}/utils.c
 CLIENT_OBJS	=	${CLIENT_SRCS:.c=.o}
 SERVER_SRCS	=	${SRCSDIR}/server.c ${SRCSDIR}/utils.c
 SERVER_OBJS	=	${SERVER_SRCS:.c=.o}
