@@ -6,7 +6,7 @@
 /*   By: sehattor <sehattor@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/18 23:19:23 by sehattor          #+#    #+#             */
-/*   Updated: 2020/10/30 23:21:59 by sehattor         ###   ########.fr       */
+/*   Updated: 2022/04/12 20:17:05 by sehattor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,14 +24,11 @@ char	*read_fd(int fd, char *save)
 	char	*buf;
 	int		ret;
 
-	if (!(buf = (char *)malloc((BUFFER_SIZE + 1) * sizeof(char))))
+	buf = (char *)malloc((BUFFER_SIZE + 1) * sizeof(char));
+	if (!check_buf_and_save(&buf, &save))
 		return (NULL);
-	if (!save && !(save = ft_strdup("\0")))
-	{
-		free(buf);
-		return (NULL);
-	}
-	while ((ret = read(fd, buf, BUFFER_SIZE)) > 0)
+	ret = read(fd, buf, BUFFER_SIZE);
+	while (ret > 0)
 	{
 		buf[ret] = '\0';
 		tmp = ft_strjoin(save, buf);
@@ -40,6 +37,7 @@ char	*read_fd(int fd, char *save)
 		save = tmp;
 		if (!tmp || ft_strchr(save, '\n'))
 			break ;
+		ret = read(fd, buf, BUFFER_SIZE);
 	}
 	free(buf);
 	if (ret < 0)
@@ -76,7 +74,7 @@ char	*get_line(char *line)
 	return (tmp);
 }
 
-int		get_next_line(int fd, char **line)
+int	get_next_line(int fd, char **line)
 {
 	static char	*save[256];
 	int			ret;
@@ -87,7 +85,8 @@ int		get_next_line(int fd, char **line)
 	*line = NULL;
 	if (save[fd] != NULL)
 	{
-		if (!(*line = ft_strdup(save[fd])))
+		*line = ft_strdup(save[fd]);
+		if (!(*line))
 			return (-1);
 		if (ft_strchr(*line, '\n'))
 		{
@@ -96,7 +95,8 @@ int		get_next_line(int fd, char **line)
 			return (ret);
 		}
 	}
-	if (!(*line = read_fd(fd, *line)))
+	*line = read_fd(fd, *line);
+	if (!(*line))
 		return (-1);
 	save[fd] = save_line(save[fd], *line, &ret);
 	*line = get_line(*line);

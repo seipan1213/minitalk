@@ -6,7 +6,7 @@
 /*   By: sehattor <sehattor@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/18 23:15:50 by sehattor          #+#    #+#             */
-/*   Updated: 2021/01/31 22:09:05 by sehattor         ###   ########.fr       */
+/*   Updated: 2022/04/12 20:17:24 by sehattor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@
 char	*ft_strdup(const char *s1);
 char	*ft_strchr(const char *s, int c);
 char	*ft_strjoin(char const *s1, char const *s2);
+int		check_buf_and_save(char **buf, char **save);
 
 char	*save_free(char *save);
 char	*read_fd(int fd, char *save);
