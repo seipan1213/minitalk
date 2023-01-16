@@ -1,5 +1,5 @@
 # minitalk
-https://user-images.githubusercontent.com/38822155/212697222-6089fb8c-c9c3-4aa3-9190-08b2047db497.mp4
+https://user-images.githubusercontent.com/38822155/212701010-8b2e9f28-b66c-4a20-85ba-19e2418343f3.mp4
 
 ## 概要
 - プロセスIDとシグナルを用いて、文字列の送受信を行うプログラム
